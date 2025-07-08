@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Favoritos</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-white shadow-md p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/feed" class="text-2xl font-bold text-blue-600">Photosphere</a>
+            <div>
+                <span class="text-gray-700 mr-4">Olá, <%= usunome %>!</span>
+                <div style="position: absolute; top: 20px; left: 20px;">
+                    <a href="/perfil" style="padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px; text-decoration: none; font-weight: bold;">Perfil</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-8 p-4">
+        <h1 class="text-3xl font-semibold mb-6 text-center">Meus Favoritos</h1>
+
+        <% if (posts && posts.length > 0) { %>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <% posts.forEach(function(post) { %>
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                        <img src="<%= post.postimagem %>" alt="Post Image by <%= post.usunome %>" class="w-full h-64 object-cover">
+                        <div class="p-4">
+                            <p class="text-sm text-gray-500 mb-1">Postado por: <strong class="text-gray-700"><%= post.usunome %></strong></p>
+                            <% if (post.postlegenda) { %>
+                                <p class="text-gray-800 mb-3"><%= post.postlegenda %></p>
+                            <% } %>
+
+                            <div class="flex items-center justify-start mb-3">
+                                <form action="/posts/<%= post.postcodigo %>/togglefavorite" method="POST" class="inline">
+                                    <button type="submit" class="flex items-center text-sm <%= post.currentUserFavorited ? 'text-yellow-500' : 'text-gray-500 hover:text-yellow-500' %>">
+                                        <svg class="w-5 h-5 mr-1" fill="<%= post.currentUserFavorited ? 'currentColor' : 'none' %>" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.539 1.118l-3.975-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.539-1.118l1.518-4.674a1 1 0 00-.363-1.118L2.05 10.099c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
+                                        Remover dos Favoritos
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <p class="text-center text-gray-600">Você ainda não favoritou nenhum post.</p>
+        <% } %>
+    </div>
+</body>
+</html>

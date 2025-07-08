@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Categorias</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <main class="container mx-auto p-4">
+    <h1 class="text-2xl font-bold mb-4">Categorias</h1>
+
+    <!-- Formulário para adicionar nova categoria com imagem -->
+    <form action="/admin/categorias" method="POST" enctype="multipart/form-data" class="mb-6 bg-white p-4 rounded shadow-md">
+      <div class="flex flex-col md:flex-row md:items-center gap-4">
+        <input type="text" name="catnome" placeholder="Nome da categoria" required class="border p-2 flex-1 rounded">
+        <input type="file" name="catfoto" accept="image/*" class="border p-2 rounded">
+        <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Adicionar</button>
+      </div>
+    </form>
+
+    <!-- Tabela de categorias -->
+    <table class="table-auto w-full bg-white shadow-md rounded">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="px-4 py-2">ID</th>
+          <th class="px-4 py-2">Nome</th>
+          <th class="px-4 py-2">Imagem</th>
+          <th class="px-4 py-2">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% categorias.forEach(cat => { %>
+          <tr class="text-center">
+            <td class="border px-4 py-2"><%= cat.catcodigo %></td>
+            <td class="border px-4 py-2"><%= cat.catnome %></td>
+            <td class="border px-4 py-2">
+              <% if (cat.catfoto) { %>
+                <img src="<%= cat.catfoto %>" alt="Imagem" class="w-20 h-20 object-cover mx-auto rounded">
+              <% } else { %>
+                <span class="text-gray-400 italic">Sem imagem</span>
+              <% } %>
+            </td>
+            <td class="border px-4 py-2">
+              <form action="/admin/categorias/<%= cat.catcodigo %>/excluir" method="POST" onsubmit="return confirm('Excluir categoria?');">
+                <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded">Excluir</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>

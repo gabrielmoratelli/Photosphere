@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Perfil</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-center">
+        <h1 class="text-2xl font-bold mb-4">Editar Foto de Perfil</h1>
+
+        <div class="mb-4">
+            <img src="/images/profiles/<%= usuario.usufoto %>" alt="Foto Atual" class="mx-auto rounded-full w-40 h-40 object-cover border-4 border-gray-200">
+        </div>
+
+        <form action="/perfil/foto" method="POST" enctype="multipart/form-data">
+            <input type="file" name="fotoPerfil" accept="image/*" required>
+            <button type="submit" style="margin-top: 10px;" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Atualizar Foto
+            </button>
+        </form>
+        
+        <a href="/perfil" class="block mt-6 text-blue-500 hover:underline">← Voltar ao Perfil</a>
+    </div>
+
+</body>
+</html>

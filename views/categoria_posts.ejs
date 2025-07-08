@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title><%= titulo %></title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <nav class="bg-white shadow-md p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="/categorias" class="text-2xl font-bold text-blue-600">← Categorias</a>
+      <a href="/perfil" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Perfil</a>
+    </div>
+  </nav>
+
+  <main class="container mx-auto mt-8 p-4">
+    <h1 class="text-3xl font-semibold mb-6 text-center"><%= titulo %></h1>
+
+    <% if (posts.length > 0) { %>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% posts.forEach(function(post) { %>
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <img src="<%= post.postimagem %>" alt="Post" class="w-full h-64 object-cover">
+            <div class="p-4">
+              <p class="text-sm text-gray-500 mb-1">Postado por: <strong><%= post.usunome %></strong></p>
+              <% if (post.postlegenda) { %>
+                <p class="text-gray-800"><%= post.postlegenda %></p>
+              <% } %>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p class="text-center text-gray-600">Nenhum post nesta categoria ainda.</p>
+    <% } %>
+  </main>
+
+</body>
+</html>

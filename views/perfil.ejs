@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f0f2f5; }
+        .profile-container { background: #fff; width: 40%; height: 60%; padding: 40px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; max-width: 400px; }
+        .profile-pic { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 4px solid #ddd; }
+        .profile-info p { margin: 10px 0; font-size: 1.1em; color: #333; }
+        .profile-info strong { color: #000; }
+        .profile-actions { margin-top: 30px; }
+        .btn { display: inline-block; padding: 12px 25px; margin: 5px; border-radius: 5px; text-decoration: none; color: white; font-weight: bold; }
+        .btn-favorites { background-color: #007bff; }
+        .btn-logout { background-color: #dc3545; }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="mb-4">
+            <a href="/feed" style="position: absolute; left: 930px;" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+                ← Voltar ao Feed
+            </a>
+        </div>
+
+        <img src="/images/profiles/<%= usuario.usufoto %>" alt="Foto de Perfil" class="profile-pic"> 
+
+        <h1><%= usuario.usunome %></h1>
+        
+        <div class="profile-info">
+            <p><strong>Email:</strong> <%= usuario.usuemail %></p>
+        </div>
+        
+        <div class="profile-actions" style="flex-direction: column; display: flex;">
+            <a href="perfil/editar" type="submit" class="btn" style="background-color: #6c757d; margin-top: 10px; border: 0;">Editar Perfil</a>
+            <a href="/favoritos" class="btn btn-favorites">Meus Favoritos</a>
+            <a href="/posts/criar" class="btn btn-favorites" style="background-color: #28a745;">Criar Post</a>
+            <a href="/logout" class="btn btn-logout">sans-serif</a>
+        </div>
+    </div>
+</body>
+</html>

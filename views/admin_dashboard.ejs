@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title><%= titulo %></title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <nav class="bg-white shadow-md p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <span class="text-xl font-semibold">Admin: <%= adminNome %></span>
+      <a href="/feed" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Voltar ao Feed</a>
+    </div>
+  </nav>
+
+  <main class="container mx-auto mt-8 p-4" style="max-width: 1200px; max-height= 120px display: flex; flex-direction: row;">
+    <h1 class="text-3xl font-bold mb-6 text-center"><%= titulo %></h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-white text-center font-semibold">
+    <a href="/admin/usuarios" class="bg-blue-500 rounded-lg p-6 shadow-md">
+            <h2 class="text-lg mb-2">Usuários</h2>
+            <p class="text-3xl"><%= estatisticas.total_usuarios %></p>
+    </a>
+
+     <a href="/admin/fotos" class="bg-green-500 rounded-lg p-6 shadow-md">
+            <h2 class="text-lg mb-2">Posts</h2>
+            <p class="text-3xl"><%= estatisticas.total_posts %></p>
+    </a>
+
+    <a href="/admin/categorias" class="bg-yellow-500 rounded-lg p-6 shadow-md">
+            <h2 class="text-lg mb-2">Categorias</h2>
+            <p class="text-3xl"><%= estatisticas.total_categorias %></p>
+    </a>
+
+    <a href="/admin/comentarios"  class="bg-red-500 rounded-lg p-6 shadow-md">
+            <h2 class="text-lg mb-2">Comentários</h2>
+            <p class="text-3xl"><%= estatisticas.total_comentarios %></p>
+    </a>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= titulo %></title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+    <nav class="bg-white shadow-md p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/feed" class="text-2xl font-bold text-blue-600">Photosphere</a>
+            <div>
+                <a href="/perfil" style="padding: 10px 20px; background-color: #007bff; color: white; border-radius: 5px; text-decoration: none; font-weight: bold;">Perfil</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-8 p-4">
+        <h1 class="text-3xl font-semibold mb-6 text-center"><%= titulo %></h1>
+
+        <% if (categorias && categorias.length > 0) { %>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <% categorias.forEach(function(cat) { %>
+                    <a href="/categorias/<%= cat.catcodigo %>" class="block bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition duration-200">
+                        <% if (cat.catfoto) { %>
+                            <img src="<%= cat.catfoto %>" alt="<%= cat.catnome %>" class="w-full h-64 object-cover">
+                        <% } else { %>
+                            <div class="w-full h-64 bg-gray-200 flex items-center justify-center">
+                                <span class="text-gray-500">Sem imagem</span>
+                            </div>
+                        <% } %>
+                        <div class="p-4 text-center">
+                            <h3 class="text-xl font-semibold text-gray-800"><%= cat.catnome %></h3>
+                        </div>
+                    </a>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <p class="text-center text-gray-600">Nenhuma categoria cadastrada.</p>
+        <% } %>
+    </div>
+
+</body>
+</html>
