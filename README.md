@@ -32,6 +32,6 @@ passo 13) Abrir seu navegador e na barra de pesquisa colocar: "http://localhost:
 
 Usuários: 
 
-ana@email.com
+ana@email.com : 123
 
-admin@photosphere.com
+admin@photosphere.com : 1234
